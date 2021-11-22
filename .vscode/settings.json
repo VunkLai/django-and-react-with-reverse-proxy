@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "backend/db.sqlite3": true,
+    "frontend/node_modules": true
+  }
+}
