@@ -1,0 +1,25 @@
+version: "2"
+
+services:
+  backend:
+    restart: unless-stopped
+    build:
+      context: ./backend
+    entrypoint: /app/run.sh
+    volumes:
+      - django_static_volume:/app/django_static
+    expose:
+      - 8000
+  frontend:
+    restart: unless-stopped
+    build:
+      context: ./frontend
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+      - django_static_volume:/app/django_static
+    depends_on:
+      - backend
+volumes:
+  django_static_volume: {}

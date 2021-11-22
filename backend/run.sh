@@ -1,6 +1,6 @@
 #!/bin/sh
 
-until cd /app/server
+until cd /app
 do
     echo "Waiting for server volume..."
     sleep 5
@@ -16,4 +16,4 @@ done
 
 # SQLite doesn't support concurrency.
 # gunicorn server.wsgi --bind 0.0.0.0:8000 --workers 4 --threads 4
-gunicorn server.wsgi --bind 0.0.0.0:8000 --workers 1 --threads 1
+gunicorn server.wsgi --bind 0.0.0.0:8000 --workers 1 --threads 1 --log-level debug
